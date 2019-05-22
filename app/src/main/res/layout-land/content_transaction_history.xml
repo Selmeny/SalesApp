@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_transaction_history"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.TransactionHistoryActivity"
+    tools:showIn="@layout/activity_transaction_history">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_transaction_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_transaction_history"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/sv_search_transaction_history"
+        app:layout_constraintStart_toStartOf="@+id/sv_search_transaction_history"
+        app:layout_constraintTop_toBottomOf="@+id/sv_search_transaction_history" />
+
+    <SearchView
+        android:id="@+id/sv_search_transaction_history"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorAccent"
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/transaction_number"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_transaction_history"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_print_receipt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:elevation="2dp"
+        android:text="@string/print_receipt"
+        android:textColor="@color/colorAccent"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/sv_search_transaction_history"
+        app:layout_constraintStart_toStartOf="@+id/guideline_transaction_history"
+        app:layout_constraintTop_toTopOf="@+id/sv_search_transaction_history" />
+
+    <Button
+        android:id="@+id/btn_cancel_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:elevation="2dp"
+        android:text="@string/cancel_transaction"
+        android:textColor="@color/colorAccent"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_print_receipt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_print_receipt" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nscv_transaction_history_detail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_cancel_transaction"
+        app:layout_constraintStart_toStartOf="@+id/btn_print_receipt"
+        app:layout_constraintTop_toBottomOf="@+id/btn_print_receipt">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_transaction_history_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_transaction_history_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/details"/>
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_transaction_history_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.4" />
+
+            <TextView
+                android:id="@+id/tv_transaction_history_payment_method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="@+id/tv_transaction_history_detail"
+                app:layout_constraintTop_toBottomOf="@+id/tv_transaction_history_detail"
+                tools:text="@string/payment_method"/>
+
+            <TextView
+                android:id="@+id/tv_transaction_history_receipt_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="@+id/tv_transaction_history_payment_method"
+                app:layout_constraintTop_toBottomOf="@+id/tv_transaction_history_payment_method"
+                android:text="@string/receipt_number"/>
+
+            <TextView
+                android:id="@+id/tv_transaction_history_date_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="@+id/tv_transaction_history_receipt_number"
+                app:layout_constraintTop_toBottomOf="@+id/tv_transaction_history_receipt_number"
+                android:text="@string/date_time"/>
+
+            <TextView
+                android:id="@+id/tv_transaction_history_payment_method_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_transaction_history_payment_method"
+                app:layout_constraintStart_toStartOf="@+id/guideline_transaction_history_detail"
+                app:layout_constraintTop_toTopOf="@+id/tv_transaction_history_payment_method"
+                android:text="@string/text_divider"/>
+
+            <TextView
+                android:id="@+id/tv_transaction_history_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_divider"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_transaction_history_receipt_number"
+                app:layout_constraintStart_toStartOf="@+id/guideline_transaction_history_detail"
+                app:layout_constraintTop_toTopOf="@+id/tv_transaction_history_receipt_number"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_transaction_history_date_time"
+                app:layout_constraintStart_toStartOf="@+id/guideline_transaction_history_detail"
+                app:layout_constraintTop_toTopOf="@+id/tv_transaction_history_date_time"
+                app:layout_constraintVertical_bias="0.0"
+                android:text="@string/text_divider"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="303dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorAccent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_transaction_history_date_time"
+                app:layout_constraintTop_toBottomOf="@+id/tv_transaction_history_date_time" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.constraint.ConstraintLayout>

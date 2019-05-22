@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:baselineAligned="false"
+    android:focusableInTouchMode="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_items"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6">
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/sv_search_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:background="@color/colorAccent"
+            app:iconifiedByDefault="false"
+            app:queryHint="@string/search_item_id_barcode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+        </android.support.v7.widget.SearchView>
+
+        <LinearLayout
+            android:id="@+id/spn_outer"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="@color/colorAccent"
+            android:gravity="center|end"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/sv_search_item"
+            app:layout_constraintStart_toStartOf="@+id/sv_search_item"
+            app:layout_constraintTop_toBottomOf="@+id/sv_search_item">
+
+            <Spinner
+                android:id="@+id/spn_item_category"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:gravity="center|end"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
+                android:prompt="@string/category"
+                android:popupTheme="@style/AppTheme.SpinnerOverlay.PopUp"
+                android:spinnerMode="dropdown"
+                android:textAlignment="gravity"
+                app:layout_constraintEnd_toEndOf="@+id/sv_search_item"
+                app:layout_constraintStart_toStartOf="@+id/sv_search_item"
+                app:layout_constraintTop_toBottomOf="@+id/sv_search_item" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_items_price"
+            style="?android:textAppearanceMedium"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="@string/item_and_price"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/spn_outer"
+            app:layout_constraintStart_toStartOf="@+id/spn_outer"
+            app:layout_constraintTop_toBottomOf="@+id/spn_outer" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_items_and_price"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_items_price"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_items_price"
+            app:layout_constraintTop_toBottomOf="@+id/tv_items_price"
+            app:layout_constraintVertical_bias="1.0" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_transaction"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4">
+
+        <Button
+            android:id="@+id/btn_customer"
+            style="@android:style/Widget.Material.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorAccent"
+            android:text="@string/select_member"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_detail_transaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:text="@string/detail_transaction"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/btn_customer"
+            app:layout_constraintStart_toStartOf="@+id/btn_customer"
+            app:layout_constraintTop_toBottomOf="@+id/btn_customer" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_transaction"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/tl_total_price"
+            app:layout_constraintEnd_toEndOf="@+id/tv_detail_transaction"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_transaction"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_transaction" />
+
+        <TableLayout
+            android:id="@+id/tl_total_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:weightSum="1"
+            app:layout_constraintBottom_toTopOf="@+id/btn_settle_trn"
+            app:layout_constraintEnd_toEndOf="@+id/rv_transaction"
+            app:layout_constraintStart_toStartOf="@+id/rv_transaction">
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="monospace"
+                    android:gravity="end|center"
+                    android:text="@string/total"
+                    android:textAppearance="@android:style/TextAppearance.Material"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_price_rupiah"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="monospace"
+                    android:gravity="end|center"
+                    android:text="@string/rp0"
+                    android:textAppearance="@android:style/TextAppearance.Material"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tv_discount_rate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="monospace"
+                    android:gravity="end|center"
+                    android:text="@string/discount"
+                    android:textAppearance="@android:style/TextAppearance.Material"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_discount_rupiah"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="monospace"
+                    android:gravity="end|center"
+                    android:text="@string/rp0"
+                    android:textAppearance="@android:style/TextAppearance.Material"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tv_tax_rate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="monospace"
+                    android:gravity="end|center"
+                    android:text="@string/tax_rate"
+                    android:textAppearance="@android:style/TextAppearance.Material"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_tax_rupiah"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="monospace"
+                    android:gravity="end|center"
+                    android:text="@string/rp0"
+                    android:textAppearance="@android:style/TextAppearance.Material"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tv_total_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="monospace"
+                    android:gravity="end|center"
+                    android:text="@string/grand_total"
+                    android:textAppearance="@android:style/TextAppearance.Material"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_total_price_rupiah"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="monospace"
+                    android:gravity="end|center"
+                    android:text="@string/rp0"
+                    android:textAppearance="@android:style/TextAppearance.Material"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+        </TableLayout>
+
+
+        <Button
+            android:id="@+id/btn_settle_trn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:elevation="2dp"
+            android:fontFamily="sans-serif"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="@string/settle_transaction"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ll_more_transaction_1"
+            app:layout_constraintEnd_toEndOf="@+id/tl_total_price"
+            app:layout_constraintStart_toStartOf="@+id/tl_total_price" />
+
+        <LinearLayout
+            android:id="@+id/ll_more_transaction_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/ll_more_transaction_2"
+            app:layout_constraintEnd_toEndOf="@+id/btn_settle_trn"
+            app:layout_constraintStart_toStartOf="@+id/btn_settle_trn">
+
+            <Button
+                android:id="@+id/btn_hold_bill"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="2dp"
+                android:fontFamily="sans-serif"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/hold_bill"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_clear_transaction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="2dp"
+                android:fontFamily="sans-serif"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/clear_transaction"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_transaction_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="2dp"
+                android:fontFamily="sans-serif"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/transaction_history"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_setting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="2dp"
+                android:fontFamily="sans-serif"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/setting"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_more_transaction_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ll_more_transaction_1"
+            app:layout_constraintStart_toStartOf="@+id/ll_more_transaction_1">
+
+            <Button
+                android:id="@+id/btn_open_cash"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="2dp"
+                android:fontFamily="sans-serif"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/open_cash"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_end_of_day"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="2dp"
+                android:fontFamily="sans-serif"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/end_of_day"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_log_out"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="2dp"
+                android:fontFamily="sans-serif"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/log_out"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_settle_transaction"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.SettleTransactionActivity"
+    tools:showIn="@layout/activity_settle_transaction">
+
+
+    <TextView
+        android:id="@+id/tv_settle_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="@string/rp_3"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider_settle_price"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/tv_settle_price"
+        app:layout_constraintStart_toStartOf="@+id/tv_settle_price"
+        app:layout_constraintTop_toBottomOf="@+id/tv_settle_price" />
+
+    <TextView
+        android:id="@+id/tv_payment_method"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/payment_method"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/divider_settle_price"
+        app:layout_constraintTop_toBottomOf="@+id/divider_settle_price" />
+
+    <CheckBox
+        android:id="@+id/cb_cash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:buttonTint="@color/colorPrimary"
+        android:checked="true"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/cash"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_payment_method"
+        app:layout_constraintTop_toBottomOf="@+id/tv_payment_method" />
+
+    <CheckBox
+        android:id="@+id/cb_credit_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:buttonTint="@color/colorPrimary"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/credit_card"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cb_cash"
+        app:layout_constraintStart_toEndOf="@+id/cb_cash"
+        app:layout_constraintTop_toTopOf="@+id/cb_cash" />
+
+    <CheckBox
+        android:id="@+id/cb_debit_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:buttonTint="@color/colorPrimary"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/debit_card"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cb_credit_card"
+        app:layout_constraintStart_toEndOf="@+id/cb_credit_card"
+        app:layout_constraintTop_toTopOf="@+id/cb_credit_card" />
+
+    <FrameLayout
+        android:id="@+id/fl_payment_method"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/divider_settle_price"
+        app:layout_constraintStart_toStartOf="@+id/cb_cash"
+        app:layout_constraintTop_toBottomOf="@+id/cb_cash">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_payment_method_cash"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:visibility="gone">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_payment_method_cash_25"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <TextView
+                android:id="@+id/tv_amount_due"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/amount_due"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline_payment_method_cash_25"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_paid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/paid"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_amount_due"
+                app:layout_constraintTop_toBottomOf="@+id/tv_amount_due" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_payment_method_cash_50"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/tv_amount_due_result"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/rp_3"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_amount_due"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_payment_method_cash_75"
+                app:layout_constraintStart_toStartOf="@+id/guideline_payment_method_cash_50"
+                app:layout_constraintTop_toTopOf="@+id/tv_amount_due" />
+
+            <EditText
+                android:id="@+id/edt_paid_result"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:hint="@string/rp_3"
+                android:inputType="number"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_paid"
+                app:layout_constraintEnd_toEndOf="@+id/tv_amount_due_result"
+                app:layout_constraintStart_toStartOf="@+id/tv_amount_due_result"
+                app:layout_constraintTop_toTopOf="@+id/tv_paid" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_payment_method_cash_75"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <Button
+                android:id="@+id/btn_payment_method_cash_charge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="2dp"
+                android:fontFamily="sans-serif"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/charge"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/edt_paid_result"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_paid"
+                app:layout_constraintTop_toBottomOf="@+id/edt_paid_result" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_payment_method_credit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:visibility="gone">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_payment_method_credit_25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <TextView
+                android:id="@+id/tv_amount_due_credit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/amount_due"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline_payment_method_credit_25"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_credit_card_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/credit_card_number"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_amount_due_credit"
+                app:layout_constraintTop_toBottomOf="@+id/tv_amount_due_credit" />
+
+            <TextView
+                android:id="@+id/tv_credit_card_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/credit_card_name"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_credit_card_number"
+                app:layout_constraintTop_toBottomOf="@+id/tv_credit_card_number" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_payment_method_credit_50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/tv_amount_due_credit_result"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/rp_3"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_amount_due_credit"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_payment_method_credit_75"
+                app:layout_constraintStart_toStartOf="@+id/guideline_payment_method_credit_50"
+                app:layout_constraintTop_toTopOf="@+id/tv_amount_due_credit" />
+
+            <EditText
+                android:id="@+id/edt_credit_card_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/card_number"
+                android:inputType="phone"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_credit_card_number"
+                app:layout_constraintEnd_toEndOf="@+id/tv_amount_due_credit_result"
+                app:layout_constraintStart_toStartOf="@+id/tv_amount_due_credit_result"
+                app:layout_constraintTop_toTopOf="@+id/tv_credit_card_number" />
+
+            <EditText
+                android:id="@+id/edt_credit_card_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_credit_card_name"
+                app:layout_constraintEnd_toEndOf="@+id/edt_credit_card_number"
+                app:layout_constraintStart_toStartOf="@+id/edt_credit_card_number"
+                app:layout_constraintTop_toTopOf="@+id/tv_credit_card_name" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_payment_method_credit_75"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <Button
+                android:id="@+id/btn_payment_method_credit_charge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="2dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/save"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/edt_credit_card_name"
+                app:layout_constraintStart_toStartOf="@+id/tv_credit_card_name"
+                app:layout_constraintTop_toBottomOf="@+id/edt_credit_card_name" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_payment_method_debit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:visibility="gone">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_payment_method_debit_25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <TextView
+                android:id="@+id/tv_amount_due_debit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/amount_due"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline_payment_method_debit_25"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_debit_card_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/debit_card_number"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_amount_due_debit"
+                app:layout_constraintTop_toBottomOf="@+id/tv_amount_due_debit" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_payment_method_debit_50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/tv_amount_due_debit_result"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/rp_3"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_amount_due_debit"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_payment_method_debit_75"
+                app:layout_constraintStart_toStartOf="@+id/guideline_payment_method_debit_50"
+                app:layout_constraintTop_toTopOf="@+id/tv_amount_due_debit" />
+
+            <EditText
+                android:id="@+id/edt_debit_card_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/card_number"
+                android:inputType="phone"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_debit_card_number"
+                app:layout_constraintStart_toStartOf="@+id/guideline_payment_method_debit_50"
+                app:layout_constraintTop_toTopOf="@+id/tv_debit_card_number" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_payment_method_debit_75"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <Button
+                android:id="@+id/btn_payment_method_debit_charge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="2dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/save"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/edt_debit_card_number"
+                app:layout_constraintStart_toStartOf="@+id/tv_debit_card_number"
+                app:layout_constraintTop_toBottomOf="@+id/edt_debit_card_number" />
+        </android.support.constraint.ConstraintLayout>
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>
